@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 const props = defineProps({
   panc: {
     type: Object,
@@ -8,7 +9,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="panc-card">
+  <router-link :to="{ name: 'panc', params: { id: panc.id } }" class="panc-card">
     <div class="panc-image-container">
       <img :src="panc.image_url" :alt="panc.nameScie" class="panc-image" />
     </div>
@@ -20,7 +21,7 @@ const props = defineProps({
 
       <p class="panc-description">{{ panc.description }}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style scoped>

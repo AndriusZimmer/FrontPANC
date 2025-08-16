@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import JsonRead from './components/JsonRead.vue'
-import strings from './assets/strings.json'
 import ListaPlanta from './components/ListaPlanta.vue'
+import { useRouter } from 'vue-router'
 
 const form = ref([])
 const jsonRead = ref(null)
@@ -24,7 +24,7 @@ onMounted(() => {
   <div class="container" id="intro">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-10 col-lg-8">
-        <lista-planta :pancs="form" />
+        <router-view :pancs="form"></router-view>
       </div>
     </div>
   </div>
