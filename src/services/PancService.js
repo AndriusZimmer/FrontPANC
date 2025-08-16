@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000'; // change if your API URL is different
+const API_URL = 'https://panc-backend.onrender.com'; // change if your API URL is different
 
 export default {
   async getAllPancs() {
