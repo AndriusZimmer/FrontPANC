@@ -73,7 +73,6 @@ const handleFileChange = async (event) => {
 
 <template>
   <div class="pancs-container">
-    <!-- Campo de busca -->
     <input
       v-model="searchTerm"
       type="text"
@@ -81,7 +80,6 @@ const handleFileChange = async (event) => {
       class="search-input"
     />
 
-    <!-- Botão para escolher imagem -->
     <button @click="openFilePicker" class="floating-button">
       <span class="material-icons"> image_search </span>
     </button>
@@ -95,7 +93,6 @@ const handleFileChange = async (event) => {
       @change="handleFileChange"
     />
 
-    <!-- Lista de PANCs filtrada -->
     <div v-for="(panc, index) in filteredPancs" :key="panc.id" class="panc-wrapper">
       <Panc :panc="panc" />
     </div>
@@ -112,7 +109,10 @@ const handleFileChange = async (event) => {
   min-height: 100vh;
 }
 
-/* Campo de busca */
+.panc-wrapper {
+  margin-bottom: 1.5rem;
+}
+
 .search-input {
   padding: 0.75rem 1rem;
   border-radius: 8px;

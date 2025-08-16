@@ -36,7 +36,6 @@ const typewriterEffect = (text) => {
   displayResposta.value = ''
   isTyping.value = true
 
-  // Limpa qualquer intervalo anterior para evitar animações duplicadas
   if (intervalId) {
     clearInterval(intervalId)
   }
@@ -49,8 +48,8 @@ const typewriterEffect = (text) => {
       clearInterval(intervalId)
       isTyping.value = false
     }
-  }, 15) // Velocidade da digitação (em milissegundos)
-  prompt.value = ""
+  }, 15)
+  prompt.value = ''
 }
 
 async function mandarPrompt() {
@@ -261,7 +260,6 @@ function resizeBack(element) {
   padding: 4rem;
 }
 
-/* Estilos para o novo formulário de dúvidas */
 .info-card.full-width h3 {
   margin-bottom: 1rem;
 }
@@ -272,11 +270,11 @@ function resizeBack(element) {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
-  margin-bottom: 1rem; /* Espaçamento entre o textarea e o botão */
+  margin-bottom: 1rem;
 }
 
 .btn-custom {
-  background-color: #3c5c3c; /* Cor do tema */
+  background-color: #3c5c3c;
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -299,7 +297,7 @@ function resizeBack(element) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.5rem; /* Espaçamento entre o botão e o parágrafo da resposta */
+  gap: 1.5rem;
   width: 100%;
 }
 
