@@ -7,11 +7,11 @@ const route = useRoute();
 const panc = ref(null);
 
 const fetchPanc = async (id) => {
-  try {
-    panc.value = await pancService.getPancById(id);
-  } catch (error) {
-    console.error('Erro ao buscar Panc:', error);
-  }
+    try {
+        panc.value = await pancService.getPancById(id);
+    } catch (error) {
+        console.error('Erro ao buscar Panc:', error);
+    }
 };
 
 // Fetch on component mount
@@ -21,9 +21,9 @@ onMounted(() => {
 
 // Watch for changes in the route ID and refetch
 watch(
-  () => route.params.id,
-  (newId) => {
-    fetchPanc(newId);
+  () => (route.params.id),
+  (id) => {
+    fetchPanc(id);
   }
 );
 </script>

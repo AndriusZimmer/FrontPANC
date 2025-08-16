@@ -11,15 +11,15 @@ const props = defineProps({
 <template>
   <router-link :to="{ name: 'panc', params: { id: panc.id } }" class="panc-card">
     <div class="panc-image-container">
-      <img :src="panc.image_url" :alt="panc.nameScie" class="panc-image" />
+      <img :src="panc.img" :alt="panc.nameScie" class="panc-image" />
     </div>
     <div class="panc-info-container">
       <div class="panc-header">
-        <h2 class="panc-title">{{ panc.nameCommon }}</h2>
-        <p class="panc-subtitle">({{ panc.nameScie }})</p>
+        <h2 class="panc-title">{{ panc.nome }}</h2>
+        <p class="panc-subtitle">({{ panc.nome_cientifico }})</p>
       </div>
 
-      <p class="panc-description">{{ panc.description }}</p>
+      <p class="panc-description">{{ panc.identificacao_botanica}}</p>
     </div>
   </router-link>
 </template>

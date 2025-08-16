@@ -1,23 +1,71 @@
 <script setup>
+import { ref, onMounted  } from 'vue'
 import Panc from './Panc.vue'
+import pancService from '../services/PancService';
+import router from '@/router';
 
-const props = defineProps({
-  pancs: {
-    type: Array,
-    required: true,
-  },
-})
+const pancs = ref(null);
+
+const fetchPancs = async (id) => {
+    try {
+        pancs.value = await pancService.getAllPancs(id);
+    } catch (error) {
+        console.error('Erro ao buscar Panc:', error);
+    }
+};
+
+// Fetch on component mount
+onMounted(() => {
+  fetchPancs();
+});
+
+// ref para o input
+const fileInput = ref(null)
+
+const openFilePicker = () => {
+  fileInput.value.click()
+}
+
+const handleFileChange = async (event) => {
+  const file = event.target.files[0]
+  if (file) {
+    console.log("Imagem selecionada:", file)
+
+    // Exemplo de envio via FormData
+    var panc = await pancService.detectar(file);
+    
+    router.push({ name: 'panc', params: { id: panc.id } })
+
+    // Exemplo (se quiser integrar depois)
+    // await axios.post('/api/upload', formData)
+  }
+}
 </script>
 
 <template>
   <div class="pancs-container">
-    <button class="floating-button"><span class="material-icons"> image_search </span></button>
+    <!-- Botão flutuante -->
+    <button @click="openFilePicker" class="floating-button">
+      <span class="material-icons"> image_search </span>
+    </button>
 
+    <!-- Input escondido -->
+    <input
+      type="file"
+      accept="image/*"
+      capture="environment"
+      ref="fileInput"
+      style="display: none"
+      @change="handleFileChange"
+    />
+
+    <!-- Lista de Pancs -->
     <div v-for="(panc, index) in pancs" :key="panc.id" class="panc-wrapper">
       <Panc :panc="panc" />
     </div>
   </div>
 </template>
+
 
 <style scoped>
 .pancs-container {
