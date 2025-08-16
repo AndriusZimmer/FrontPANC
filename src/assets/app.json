@@ -1,68 +1,65 @@
 [
   {
     "id": "1",
-    "nameCommon": "Picão Preto",
-    "nameScie": "Bidens pilosa",
-    "description": "Planta herbácea trepadeira ou rasteira, com flores coloridas e folhas arredondadas comestíveis. Possui sabor levemente picante, usada em saladas, sanduíches e conservas (como \"falsas alcaparras\"). É rica em vitamina C, antioxidantes e tem propriedades antimicrobianas.",
-    "familiaBotanica": "Asteraceae",
+    "nome": "Picão Preto",
+    "nome_cientifico": "Bidens pilosa",
+    "familia_botanica": "Asteraceae",
     "origem": "Originária da América do Sul e Central, mas amplamente distribuída em regiões tropicais e subtropicais.",
-    "habitoCrescimento": "Anual, de crescimento rápido e fácil adaptação, pode ser encontrada em solos perturbados, jardins e áreas de cultivo.",
-    "identificacaoBotanica": "Folhas opostas, divididas em 3 ou 5 folíolos (ou \"picões\"), com margens serrilhadas. Flores pequenas, brancas ou amareladas, que formam sementes com duas farpas (o \"picão\" característico).",
-    "nomesPopulares": ["Picão-preto", "Carrapicho", "Amor-de-homem", "Coerana"],
-    "partesComestiveis": [
+    "habito_crescimento": "Anual, de crescimento rápido e fácil adaptação, pode ser encontrada em solos perturbados, jardins e áreas de cultivo.",
+    "identificacao_botanica": "Folhas opostas, divididas em 3 ou 5 folíolos (ou \"picões\"), com margens serrilhadas. Flores pequenas, brancas ou amareladas, que formam sementes com duas farpas (o \"picão\" característico).",
+    "nomes_populares": ["Picão-preto", "Carrapicho", "Amor-de-homem", "Coerana"],
+    "partes_comestiveis": [
       {
         "parte": "Folhas jovens e brotos",
-        "preparacao": "Podem ser consumidas cruas em saladas ou refogadas como o espinafre. Têm um sabor levemente amargo e picante."
+        "modo": "Podem ser consumidas cruas em saladas ou refogadas como o espinafre. Têm um sabor levemente amargo e picante."
       },
       {
         "parte": "Flores",
-        "preparacao": "As flores e botões podem ser usadas em saladas para dar cor e um sabor suave."
+        "modo": "As flores e botões podem ser usadas em saladas para dar cor e um sabor suave."
       }
     ],
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Bidens_pilosa_at_Lafayette_County_FL.jpg"
+    "url_foto": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Bidens_pilosa_at_Lafayette_County_FL.jpg"
   },
   {
     "id": "2",
-    "nameCommon": "Bertalha Coração",
-    "nameScie": "Anredera cordifolia",
-    "description": "Trepadeira vigorosa com folhas em formato de coração, consumidas cozidas como espinafre, em refogados e sopas. Os tubérculos também são comestíveis. Rica em fibras, ferro, cálcio e vitaminas A e C, é altamente nutritiva.",
-    "familiaBotanica": "Basellaceae",
+    "nome": "Bertalha Coração",
+    "nome_cientifico": "Anredera cordifolia",
+    "familia_botanica": "Basellaceae",
     "origem": "Andes, na América do Sul.",
-    "habitoCrescimento": "Perene e trepadeira, com crescimento rápido. Desenvolve tubérculos aéreos (batatinhas) que são usados para propagação.",
-    "identificacaoBotanica": "Folhas suculentas, grossas e em formato de coração. As flores são pequenas, brancas e perfumadas, em cachos pendentes.",
-    "nomesPopulares": ["Bertalha-coração", "Coração-de-jesus", "Batata-do-ar", "Trepadeira-do-ar"],
-    "partesComestiveis": [
+    "habito_crescimento": "Perene e trepadeira, com crescimento rápido. Desenvolve tubérculos aéreos (batatinhas) que são usados para propagação.",
+    "identificacao_botanica": "Folhas suculentas, grossas e em formato de coração. As flores são pequenas, brancas e perfumadas, em cachos pendentes.",
+    "nomes_populares": ["Bertalha-coração", "Coração-de-jesus", "Batata-do-ar", "Trepadeira-do-ar"],
+    "partes_comestiveis": [
       {
         "parte": "Folhas",
-        "preparacao": "Consumidas cozidas, em sopas, refogados, suflês ou como recheio de tortas. Têm uma textura mucilaginosa que pode ser reduzida com o cozimento."
+        "modo": "Consumidas cozidas, em sopas, refogados, suflês ou como recheio de tortas. Têm uma textura mucilaginosa que pode ser reduzida com o cozimento."
       },
       {
         "parte": "Tubérculos aéreos (batatinhas)",
-        "preparacao": "Cozidos, assados ou fritos. Têm sabor e textura parecidos com a batata convencional."
+        "modo": "Cozidos, assados ou fritos. Têm sabor e textura parecidos com a batata convencional."
       }
     ],
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Anredera_cordifolia_in_flower_and_with_bulbils.jpg/1280px-Anredera_cordifolia_in_flower_and_with_bulbils.jpg"
+    "url_foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Anredera_cordifolia_in_flower_and_with_bulbils.jpg/1280px-Anredera_cordifolia_in_flower_and_with_bulbils.jpg"
   },
   {
     "id": "3",
-    "nameCommon": "Ora-pro-nóbis",
-    "nameScie": "Pereskia aculeata",
-    "description": "Planta cactácea trepadeira, conhecida por suas folhas comestíveis, ricas em proteínas e ferro. É uma das PANCs mais populares e nutritivas.",
-    "familiaBotanica": "Cactaceae",
+    "nome": "Ora-pro-nóbis",
+    "nome_cientifico": "Pereskia aculeata",
+    "familia_botanica": "Cactaceae",
     "origem": "América Tropical, do Panamá ao Brasil.",
-    "habitoCrescimento": "Arbusto ou trepadeira de crescimento vigoroso, com espinhos no caule. As folhas são suculentas e perenes.",
-    "identificacaoBotanica": "Folhas verdes, ovais e carnosas. Os caules possuem espinhos. As flores são brancas ou creme, e os frutos são pequenos, arredondados e amarelados ou alaranjados.",
-    "nomesPopulares": ["Ora-pro-nobis", "Beldroega-arbustiva"],
-    "partesComestiveis": [
+    "habito_crescimento": "Arbusto ou trepadeira de crescimento vigoroso, com espinhos no caule. As folhas são suculentas e perenes.",
+    "identificacao_botanica": "Folhas verdes, ovais e carnosas. Os caules possuem espinhos. As flores são brancas ou creme, e os frutos são pequenos, arredondados e amarelados ou alaranjados.",
+    "nomes_populares": ["Ora-pro-nobis", "Beldroega-arbustiva"],
+    "partes_comestiveis": [
       {
         "parte": "Folhas",
-        "preparacao": "Podem ser consumidas refogadas, em sopas, saladas, sucos verdes, pães e massas. Têm um sabor neutro e uma textura levemente viscosa."
+        "modo": "Podem ser consumidas refogadas, em sopas, saladas, sucos verdes, pães e massas. Têm um sabor neutro e uma textura levemente viscosa."
       },
       {
         "parte": "Frutos",
-        "preparacao": "Pequenos e comestíveis, com sabor adocicado, podem ser consumidos in natura."
+        "modo": "Pequenos e comestíveis, com sabor adocicado, podem ser consumidos in natura."
       }
     ],
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Pereskia_aculeata_-_Ora-pro-n%C3%B3bis.jpg/1280px-Pereskia_aculeata_-_Ora-pro-n%C3%B3bis.jpg"
+    "url_foto": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Pereskia_aculeata_-_Ora-pro-n%C3%B3bis.jpg/1280px-Pereskia_aculeata_-_Ora-pro-n%C3%B3bis.jpg"
   }
 ]

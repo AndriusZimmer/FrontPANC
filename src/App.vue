@@ -1,8 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import JsonRead from './components/JsonRead.vue'
-import ListaPlanta from './components/ListaPlanta.vue'
-import { useRouter } from 'vue-router'
 
 const form = ref([])
 const jsonRead = ref(null)
@@ -17,7 +15,7 @@ onMounted(() => {
 
   <header class="main-header">
     <div class="header-content">
-      <h1 class="header-title">PANC.ai</h1>
+      <h1 class="header-title">Amigo PANC</h1>
     </div>
   </header>
 

@@ -1,76 +1,3 @@
-<script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
-import json from '../assets/app.json'
-
-const route = useRoute()
-const pancId = route.params.id
-const data = ref(json)
-
-const panc = computed(() => {
-  return data.value.find((p) => p.id === pancId)
-})
-</script>
-
-<template>
-  <div v-if="panc" class="panc-detail-container">
-    <router-link to="/" class="back-button">
-      <span class="material-icons"> arrow_back </span>
-    </router-link>
-
-    <div class="panc-header">
-      <h1 class="panc-common-name">{{ panc.nameCommon }}</h1>
-      <p class="panc-scientific-name">({{ panc.nameScie }})</p>
-    </div>
-
-    <div class="panc-image-container">
-      <img :src="panc.imageUrl" :alt="panc.nameScie" class="panc-image" />
-    </div>
-
-    <div class="panc-info-section">
-      <div class="info-card">
-        <h3>Família Botânica</h3>
-        <p>{{ panc.familiaBotanica }}</p>
-      </div>
-      <div class="info-card">
-        <h3>Origem</h3>
-        <p>{{ panc.origem }}</p>
-      </div>
-      <div class="info-card">
-        <h3>Hábito e Crescimento</h3>
-        <p>{{ panc.habitoCrescimento }}</p>
-      </div>
-    </div>
-
-    <div class="panc-info-section">
-      <div class="info-card full-width">
-        <h3>Identificação Botânica</h3>
-        <p>{{ panc.identificacaoBotanica }}</p>
-      </div>
-      <div class="info-card full-width">
-        <h3>Nomes Populares</h3>
-        <p>{{ panc.nomesPopulares.join(', ') }}</p>
-      </div>
-    </div>
-
-    <div class="panc-info-section">
-      <div class="info-card full-width">
-        <h3>Partes Comestíveis</h3>
-        <ul>
-          <li v-for="(parte, index) in panc.partesComestiveis" :key="index">
-            <strong>{{ parte.parte }}:</strong> {{ parte.preparacao }}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div v-else class="not-found-container">
-    <p>Planta não encontrada.</p>
-    <router-link to="/" class="back-button"> Voltar para a lista </router-link>
-  </div>
-</template>
-
 <style scoped>
 .panc-detail-container {
   padding: 2rem;
@@ -180,3 +107,95 @@ const panc = computed(() => {
   padding: 4rem;
 }
 </style>
+
+<script setup>
+import { ref, watch, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import pancService from '../services/PancService'
+import json from '../assets/app.json'
+
+const data = ref(json)
+const route = useRoute()
+const panc = ref(null)
+
+const fetchPanc = async (id) => {
+  try {
+    // panc.value = await pancService.getPancById(id);
+    console.log(data.value)
+    panc.value = data.value[0]
+  } catch (error) {
+    console.error('Erro ao buscar Panc:', error)
+  }
+}
+
+// Fetch on component mount
+onMounted(() => {
+  fetchPanc(route.params.id)
+})
+
+// Watch for changes in the route ID and refetch
+watch(
+  () => route.params.id,
+  (newId) => {
+    fetchPanc(newId)
+  },
+)
+</script>
+
+<template>
+  <div v-if="panc" class="panc-detail-container">
+    <router-link to="/" class="back-button">
+      <span class="material-icons"> arrow_back </span>
+    </router-link>
+
+    <div class="panc-header">
+      <h1 class="panc-common-name">{{ panc.nome }}</h1>
+      <p class="panc-scientific-name">({{ panc.nome_cientifico }})</p>
+    </div>
+
+    <div class="panc-image-container">
+      <img :src="panc.imageUrl" :alt="panc.nome_cientifico" class="panc-image" />
+    </div>
+
+    <div class="panc-info-section">
+      <div class="info-card">
+        <h3>Família Botânica</h3>
+        <p>{{ panc.familia_botanica }}</p>
+      </div>
+      <div class="info-card">
+        <h3>Origem</h3>
+        <p>{{ panc.origem }}</p>
+      </div>
+      <div class="info-card">
+        <h3>Hábito e Crescimento</h3>
+        <p>{{ panc.habito_crescimento }}</p>
+      </div>
+    </div>
+
+    <div class="panc-info-section">
+      <div class="info-card full-width">
+        <h3>Identificação Botânica</h3>
+        <p>{{ panc.identificacao_botanica }}</p>
+      </div>
+      <div class="info-card full-width">
+        <h3>Nomes Populares</h3>
+        <p>{{ panc.nomes_populares.join(', ') }}</p>
+      </div>
+    </div>
+
+    <div class="panc-info-section">
+      <div class="info-card full-width">
+        <h3>Partes Comestíveis</h3>
+        <ul>
+          <li v-for="(parte, index) in panc.partes_comestiveis" :key="index">
+            <strong>{{ parte.parte }}:</strong> {{ parte.modo }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div v-else class="not-found-container">
+    <p>Planta não encontrada.</p>
+    <router-link to="/" class="back-button"> Voltar para a lista </router-link>
+  </div>
+</template>
