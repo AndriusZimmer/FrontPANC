@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://panc-backend.onrender.com'; // change if your API URL is different
+const API_URL = 'https://panc-backend.onrender.com';
 
 export default {
   async getAllPancs() {
@@ -47,5 +47,20 @@ export default {
       console.error('Error uploading image:', error);
       throw error;
     }
+  },
+
+    async perguntar(prompt, id) {
+        try {
+            const response = await axios.post(`${API_URL}/gemini/${id}`, {"prompt": prompt}, {
+                headers: {
+                "x-api-key": 'panc'
+                }
+            });
+
+            return response.data;
+        } catch (error) {
+            console.error('Erro ao enviar pergunta:', error);
+            throw error;
+        }
   }
 };

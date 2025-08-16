@@ -50,14 +50,13 @@ const typewriterEffect = (text) => {
       isTyping.value = false
     }
   }, 15) // Velocidade da digitação (em milissegundos)
+  prompt.value = ""
 }
 
-function mandarPrompt() {
-  resposta.value = prompt.value
-  prompt.value = ''
-  setTimeout(() => {
-    typewriterEffect(resposta.value)
-  }, 500) // Simula 0.5 segundos de "processamento"
+async function mandarPrompt() {
+  setTimeout(async () => {
+    typewriterEffect((await pancService.perguntar(prompt.value, panc.value.id)).answer)
+  }, 500)
 }
 
 let rows = ref(3)

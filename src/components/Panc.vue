@@ -27,6 +27,7 @@ const props = defineProps({
 
 <style scoped>
 .panc-card {
+  text-decoration: none;
   display: flex;
   flex-direction: column;
   overflow: hidden;
