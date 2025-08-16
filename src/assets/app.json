@@ -1,18 +1,14 @@
-
 [
-        {
-            "id": "1",
-            "nameScie": "Panc 1",
-            "description": "Panc 1 description"
-        },
-        {
-            "id": "2",
-            "nameScie": "Panc 2",
-            "description": "Panc 1 description"
-        },
-        {
-            "id": "3",
-            "nameScie": "Panc 3",
-            "description": "Panc 1 description"
-        }
-    ]
+  {
+    "id": "1",
+    "nameCommon": "Picão Preto",
+    "nameScie": "Bidens pilosa",
+    "description": "Planta herbácea trepadeira ou rasteira, com flores coloridas e folhas arredondadas comestíveis. Possui sabor levemente picante, usada em saladas, sanduíches e conservas (como \"falsas alcaparras\"). É rica em vitamina C, antioxidantes e tem propriedades antimicrobianas."
+  },
+  {
+    "id": "2",
+    "nameCommon": "Bertalha Coração",
+    "nameScie": "Anredera cordifolia",
+    "description": "Trepadeira vigorosa com folhas em formato de coração, consumidas cozidas como espinafre, em refogados e sopas. Os tubérculos também são comestíveis. Rica em fibras, ferro, cálcio e vitaminas A e C, é altamente nutritiva."
+  }
+]
