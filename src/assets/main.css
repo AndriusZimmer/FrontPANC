@@ -1,0 +1,196 @@
+.form-control::-webkit-input-placeholder {
+  color: rgb(220, 220, 220);
+}
+
+.form-control:-moz-placeholder {
+  color: rgb(220, 220, 220);
+}
+
+.form-control::-moz-placeholder {
+  color: rgb(220, 220, 220);
+}
+
+.alert {
+  font-size: smaller;
+  color: red;
+  background-color: transparent;
+  border: transparent;
+  padding: 0rem 1rem 0rem 1rem;
+  margin: 0.1rem;
+}
+
+.main-title-xl {
+  font-weight: 400;
+  font-size: x-large;
+  color: #424242;
+}
+
+.main-title-l {
+  font-weight: 400;
+  font-size: large;
+  color: #424242;
+}
+
+.main-label-md {
+  font-weight: 600;
+  font-size: medium;
+}
+
+.main-label-sm {
+  font-weight: 600;
+  font-size: small;
+}
+
+.container-custom {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+  background-color: white;
+  padding: 20px 20px 10px 20px;
+}
+
+.config-box {
+  border: solid 1px #0d6efd;
+  background-color: #f8f9fa;
+}
+
+.popover {
+  max-width: 600px;
+}
+
+.jumbotron,
+body {
+  background-color: #f8f9fa;
+}
+
+.offline {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  color: black;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
+
+tr {
+  line-height: 5px;
+  min-height: 5px;
+  height: 5px;
+}
+
+.sublinhado {
+  text-decoration: underline;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+.border-red {
+  border: 1px solid red;
+}
+
+.text-edit {
+  color: rgb(173, 173, 173);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  background: #fff;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.btn-close {
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-body {
+  padding: 20px;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.modal-footer {
+  padding: 20px;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
