@@ -1,14 +1,14 @@
 [
   {
     "id": "1",
-    "nameCommon": "Picão Preto",
-    "nameScie": "Bidens pilosa",
-    "description": "Planta herbácea trepadeira ou rasteira, com flores coloridas e folhas arredondadas comestíveis. Possui sabor levemente picante, usada em saladas, sanduíches e conservas (como \"falsas alcaparras\"). É rica em vitamina C, antioxidantes e tem propriedades antimicrobianas."
+    "nome": "Picão Preto",
+    "nome_cientifico": "Bidens pilosa",
+    "identificacao_botanica": "Planta herbácea trepadeira ou rasteira, com flores coloridas e folhas arredondadas comestíveis. Possui sabor levemente picante, usada em saladas, sanduíches e conservas (como \"falsas alcaparras\"). É rica em vitamina C, antioxidantes e tem propriedades antimicrobianas."
   },
   {
     "id": "2",
-    "nameCommon": "Bertalha Coração",
-    "nameScie": "Anredera cordifolia",
-    "description": "Trepadeira vigorosa com folhas em formato de coração, consumidas cozidas como espinafre, em refogados e sopas. Os tubérculos também são comestíveis. Rica em fibras, ferro, cálcio e vitaminas A e C, é altamente nutritiva."
+    "nome": "Bertalha Coração",
+    "nome_cientifico": "Anredera cordifolia",
+    "identificacao_botanica": "Trepadeira vigorosa com folhas em formato de coração, consumidas cozidas como espinafre, em refogados e sopas. Os tubérculos também são comestíveis. Rica em fibras, ferro, cálcio e vitaminas A e C, é altamente nutritiva."
   }
 ]
