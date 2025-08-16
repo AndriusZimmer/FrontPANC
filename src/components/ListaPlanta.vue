@@ -1,5 +1,7 @@
 <script setup>
+import { ref } from 'vue'
 import Panc from './Panc.vue'
+import PancCamera from './PancCamera.vue'
 
 const props = defineProps({
   pancs: {
@@ -7,14 +9,40 @@ const props = defineProps({
     required: true,
   },
 })
+
+const showPancCamera = ref(false)
+
+const togglePancCamera = () => {
+  showPancCamera.value = !showPancCamera.value
+}
+
+// Função que será chamada quando uma imagem for capturada no ImageSearch.vue
+const handleImageCaptured = (imageData) => {
+  // Aqui você pode processar a imagem (fazer upload, enviar para API, etc.)
+  // Por enquanto, apenas exibimos um log
+  console.log('Imagem capturada:', imageData)
+
+  // Opcional: Voltar para a lista após a captura
+  // showImageSearch.value = false;
+}
 </script>
 
 <template>
   <div class="pancs-container">
-    <button class="floating-button"><span class="material-icons"> image_search </span></button>
+    <button @click="togglePancCamera" class="floating-button">
+      <span class="material-icons"> image_search </span>
+    </button>
 
-    <div v-for="(panc, index) in pancs" :key="panc.id" class="panc-wrapper">
-      <Panc :panc="panc" />
+    <PancCamera
+      v-if="showPancCamera"
+      @image-captured="handleImageCaptured"
+      @close="togglePancCamera"
+    />
+
+    <div v-if="!showPancCamera">
+      <div v-for="(panc, index) in pancs" :key="panc.id" class="panc-wrapper">
+        <Panc :panc="panc" />
+      </div>
     </div>
   </div>
 </template>

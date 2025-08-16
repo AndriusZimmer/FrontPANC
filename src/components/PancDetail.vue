@@ -2,11 +2,15 @@
 import { ref, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import pancService from '../services/PancService'
-import json from '../assets/app.json'
 
-const data = ref(json)
 const route = useRoute()
 const panc = ref(null)
+
+const prompt = ref('')
+const resposta = ref('')
+const displayResposta = ref('')
+const isTyping = ref(false)
+let intervalId = null
 
 const fetchPanc = async (id) => {
   try {
@@ -26,6 +30,48 @@ watch(
     fetchPanc(newId)
   },
 )
+
+const typewriterEffect = (text) => {
+  let i = 0
+  displayResposta.value = ''
+  isTyping.value = true
+
+  // Limpa qualquer intervalo anterior para evitar animações duplicadas
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
+
+  intervalId = setInterval(() => {
+    if (i < text.length) {
+      displayResposta.value += text.charAt(i)
+      i++
+    } else {
+      clearInterval(intervalId)
+      isTyping.value = false
+    }
+  }, 15) // Velocidade da digitação (em milissegundos)
+}
+
+function mandarPrompt() {
+  resposta.value = prompt.value
+  prompt.value = ''
+  setTimeout(() => {
+    typewriterEffect(resposta.value)
+  }, 500) // Simula 0.5 segundos de "processamento"
+}
+
+let rows = ref(3)
+let rowsNeeded = 0
+function autoGrow(element) {
+  if (element.scrollHeight > element.clientHeight) {
+    rows.value = rows.value + 1
+  }
+}
+
+function resizeBack(element) {
+  rowsNeeded = (element.scrollHeight - element.clientHeight) / 21
+  rows.value = rows.value + rowsNeeded
+}
 </script>
 
 <template>
@@ -77,6 +123,27 @@ watch(
             <strong>{{ parte.parte }}:</strong> {{ parte.modo }}
           </li>
         </ul>
+      </div>
+    </div>
+
+    <div class="panc-info-section">
+      <div class="info-card full-width">
+        <h3>Tire suas dúvidas sobre {{ panc.nome }}</h3>
+        <textarea
+          :id="panc.id"
+          v-model="prompt"
+          class="form-control form-control-sm textarea"
+          type="text"
+          @focus="resizeBack($event.target)"
+          @blur="((rowsCache = rows), (rows = 3))"
+          @input="autoGrow($event.target)"
+          :rows="rows"
+        ></textarea>
+        <div class="chat-section">
+          <button class="btn btn-custom" @click="mandarPrompt">Enviar</button>
+          <p class="answer-text">{{ displayResposta }}</p>
+          <span v-if="isTyping" class="typing-indicator"></span>
+        </div>
       </div>
     </div>
   </div>
@@ -193,5 +260,82 @@ watch(
 .not-found-container {
   text-align: center;
   padding: 4rem;
+}
+
+/* Estilos para o novo formulário de dúvidas */
+.info-card.full-width h3 {
+  margin-bottom: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem; /* Espaçamento entre o textarea e o botão */
+}
+
+.btn-custom {
+  background-color: #3c5c3c; /* Cor do tema */
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(60, 92, 60, 0.3);
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(60, 92, 60, 0.4);
+}
+
+.chat-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem; /* Espaçamento entre o botão e o parágrafo da resposta */
+  width: 100%;
+}
+
+.answer-text {
+  white-space: pre-wrap;
+  font-style: italic;
+  animation: fade-in 1s ease-in;
+}
+
+.typing-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3c5c3c;
+  animation: blink 1s infinite;
+  margin-left: 5px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>
