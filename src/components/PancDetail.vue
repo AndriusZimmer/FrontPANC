@@ -30,13 +30,16 @@ watch(
 
 <template>
   <div v-if="panc">
+    <div v-if="panc.img">
+      <img :src="panc.img" :alt="panc.nome_cientifico" style="width: 100%; margin-top: 1rem;" />
+    </div>
     <h2>{{ panc.nome_cientifico }}</h2>
     <p><strong>Família:</strong> {{ panc.familia_botanica }}</p>
 
     <h3>Nomens Populares</h3>
     <ul>
-      <li v-for="nome in panc.NomePopular" :key="nome.id">
-        {{ nome.nome }} ({{ nome.lingua }})
+      <li v-for="nome in panc.nome_popular" :key="nome.id">
+        {{ nome.nome }}
       </li>
     </ul>
   </div>
