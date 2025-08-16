@@ -1,48 +1,103 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import Panc from './Panc.vue'
-import PancCamera from './PancCamera.vue'
+import pancService from '../services/PancService'
+import router from '@/router'
+import Swal from 'sweetalert2'
 
-const props = defineProps({
-  pancs: {
-    type: Array,
-    required: true,
-  },
-})
+const pancs = ref([])
+const searchTerm = ref('')
 
-const showPancCamera = ref(false)
-
-const togglePancCamera = () => {
-  showPancCamera.value = !showPancCamera.value
+const fetchPancs = async () => {
+  try {
+    pancs.value = await pancService.getAllPancs()
+  } catch (error) {
+    console.error('Erro ao buscar Panc:', error)
+  }
 }
 
-// Função que será chamada quando uma imagem for capturada no ImageSearch.vue
-const handleImageCaptured = (imageData) => {
-  // Aqui você pode processar a imagem (fazer upload, enviar para API, etc.)
-  // Por enquanto, apenas exibimos um log
-  console.log('Imagem capturada:', imageData)
+onMounted(() => {
+  fetchPancs()
+})
 
-  // Opcional: Voltar para a lista após a captura
-  // showImageSearch.value = false;
+const filteredPancs = computed(() => {
+  if (!searchTerm.value) return pancs.value
+  return pancs.value.filter(
+    (panc) =>
+      panc.nome_cientifico?.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
+      panc.nome?.toLowerCase().includes(searchTerm.value.toLowerCase()),
+  )
+})
+
+const fileInput = ref(null)
+
+const openFilePicker = () => {
+  fileInput.value.click()
+}
+
+const handleFileChange = async (event) => {
+  const file = event.target.files[0]
+  if (!file) return
+
+  console.log('Imagem selecionada:', file)
+
+  try {
+    const panc = await pancService.detectar(file)
+
+    if (!panc || !panc.id) {
+      throw new Error('Não é PANC!')
+    }
+
+    await Swal.fire({
+      icon: 'success',
+      title: 'É PANC!',
+      text: `Identificamos a planta: ${panc.nome_cientifico || 'ID ' + panc.id}`,
+      confirmButtonText: 'Ver detalhes',
+      confirmButtonColor: 'green',
+    })
+
+    router.push({ name: 'panc', params: { id: panc.id } })
+  } catch (error) {
+    console.error('Erro ao detectar PANC:', error)
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Não é PANC!',
+      text: 'Não foi possível detectar a PANC. Tente novamente com outra imagem.',
+      confirmButtonColor: 'red',
+      confirmButtonText: 'Ok',
+    })
+  }
 }
 </script>
 
 <template>
   <div class="pancs-container">
-    <button @click="togglePancCamera" class="floating-button">
+    <!-- Campo de busca -->
+    <input
+      v-model="searchTerm"
+      type="text"
+      placeholder="Pesquisar por nome científico ou nome..."
+      class="search-input"
+    />
+
+    <!-- Botão para escolher imagem -->
+    <button @click="openFilePicker" class="floating-button">
       <span class="material-icons"> image_search </span>
     </button>
 
-    <PancCamera
-      v-if="showPancCamera"
-      @image-captured="handleImageCaptured"
-      @close="togglePancCamera"
+    <input
+      type="file"
+      accept="image/*"
+      capture="environment"
+      ref="fileInput"
+      style="display: none"
+      @change="handleFileChange"
     />
 
-    <div v-if="!showPancCamera">
-      <div v-for="(panc, index) in pancs" :key="panc.id" class="panc-wrapper">
-        <Panc :panc="panc" />
-      </div>
+    <!-- Lista de PANCs filtrada -->
+    <div v-for="(panc, index) in filteredPancs" :key="panc.id" class="panc-wrapper">
+      <Panc :panc="panc" />
     </div>
   </div>
 </template>
@@ -51,27 +106,34 @@ const handleImageCaptured = (imageData) => {
 .pancs-container {
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Espaçamento entre os cards */
+  gap: 2rem;
   padding: 2rem;
-  background-color: #eaf1e9; /* Cor de fundo da página, um verde bem claro */
+  background-color: #eaf1e9;
   min-height: 100vh;
 }
-.panc-wrapper {
-  /* Pode-se adicionar estilizações extras aqui, como margens */
-  margin-bottom: 1.5rem;
+
+/* Campo de busca */
+.search-input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input:focus {
+  border-color: #3c5c3c;
 }
 
-/* Estilos do Botão Flutuante */
 .floating-button {
-  position: fixed; /* O elemento fica fixo em relação à viewport */
-  bottom: 2rem; /* 2rem da parte inferior da tela */
-  right: 2rem; /* 2rem da parte direita da tela */
-
-  /* Estilização básica do botão */
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
   background-color: #3c5c3c;
   color: white;
   border: none;
-  border-radius: 50%; /* Deixa o botão redondo */
+  border-radius: 50%;
   width: 60px;
   height: 60px;
   font-size: 2rem;
@@ -81,11 +143,10 @@ const handleImageCaptured = (imageData) => {
   transition:
     transform 0.2s,
     box-shadow 0.2s;
-  z-index: 1000; /* Garante que o botão fique na frente de outros elementos */
+  z-index: 1000;
 }
-
 .floating-button:hover {
-  transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+  transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 </style>

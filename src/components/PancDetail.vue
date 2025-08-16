@@ -26,8 +26,8 @@ onMounted(() => {
 
 watch(
   () => route.params.id,
-  (newId) => {
-    fetchPanc(newId)
+  (id) => {
+    fetchPanc(id)
   },
 )
 
